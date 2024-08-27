@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Sports Turf Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .payment-options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .payment-option {
+            text-align: center;
+            cursor: pointer;
+        }
+        .payment-option img {
+            width: 50px;
+            height: 50px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        #qrCode {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #qrCode img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .payment-options {
+                flex-direction: column;
+            }
+            .payment-option {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment</h1>
+        <div id="bookingDetails"></div>
+        
+        <div class="payment-options">
+            <div class="payment-option" onclick="showPaymentOption('card')">
+                <img src="https://cdn-icons-png.flaticon.com/512/179/179457.png" alt="Card Payment">
+                <p>Card Payment</p>
+            </div>
+            <div class="payment-option" onclick="showPaymentOption('qr')">
+                <img src="https://cdn-icons-png.flaticon.com/512/2928/2928873.png" alt="QR Payment">
+                <p>Scan to Pay</p>
+            </div>
+        </div>
+
+        <div id="cardPayment" style="display: none;">
+            <form id="paymentForm">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" required>
+                
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                
+                <label for="cvv">CVV:</label>
+                <input type="number" id="cvv" required>
+                
+                <button type="submit">Pay Now</button>
+            </form>
+        </div>
+
+        <div id="qrPayment" style="display: none;">
+            <div id="qrCode">
+                <!-- Replace this with an actual QR code image -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code">
+            </div>
+            <p>Scan the QR code with your mobile payment app to complete the payment.</p>
+            <button onclick="confirmQRPayment()">I've completed the payment</button>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const turf = urlParams.get('turf');
+        const slot = urlParams.get('slot');
+        const price = urlParams.get('price');
+        const equipment = urlParams.get('equipment');
+
+        document.getElementById('bookingDetails').innerHTML = `
+            <p><strong>Turf:</strong> ${turf}</p>
+            <p><strong>Slot:</strong> ${slot}</p>
+            <p><strong>Rented Equipment:</strong> ${equipment || 'None'}</p>
+            <p><strong>Total Price:</strong> $${price}</p>
+        `;
+
+        function showPaymentOption(option) {
+            document.getElementById('cardPayment').style.display = option === 'card' ? 'block' : 'none';
+            document.getElementById('qrPayment').style.display = option === 'qr' ? 'block' : 'none';
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Card payment successful! Your booking is confirmed.');
+            window.location.href = 'index.html';
+        });
+
+        function confirmQRPayment() {
+            alert('QR payment confirmed! Your booking is confirmed.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

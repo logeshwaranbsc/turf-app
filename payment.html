@@ -137,12 +137,22 @@
         const price = urlParams.get('price');
         const equipment = urlParams.get('equipment');
 
-        document.getElementById('bookingDetails').innerHTML = `
+        let bookingDetailsHtml = `
             <p><strong>Turf:</strong> ${turf}</p>
             <p><strong>Slot:</strong> ${slot}</p>
-            <p><strong>Rented Equipment:</strong> ${equipment || 'None'}</p>
             <p><strong>Total Price:</strong> $${price}</p>
         `;
+
+        if (equipment) {
+            bookingDetailsHtml += `
+                <p><strong>Rented Equipment:</strong></p>
+                <ul>
+                    ${equipment.split(',').map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        document.getElementById('bookingDetails').innerHTML = bookingDetailsHtml;
 
         function showPaymentOption(option) {
             document.getElementById('cardPayment').style.display = option === 'card' ? 'block' : 'none';

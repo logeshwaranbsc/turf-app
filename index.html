@@ -3,124 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Turf Booking</title>
+    <title>Sportz Arena</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
-        .bg-slideshow {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .bg-slideshow li {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-size: cover;
-            background-position: 50% 50%;
-            background-repeat: no-repeat;
-            opacity: 0;
-            z-index: 0;
-            animation: imageAnimation 25s linear infinite;
-        }
-        .bg-slideshow li:nth-child(1) {
-            background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80')
-        }
-        .bg-slideshow li:nth-child(2) {
-            background-image: url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            animation-delay: 5s;
-        }
-        .bg-slideshow li:nth-child(3) {
+        body {
             background-image: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80');
-            animation-delay: 10s;
-        }
-        .bg-slideshow li:nth-child(4) {
-            background-image: url('https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            animation-delay: 15s;
-        }
-        .bg-slideshow li:nth-child(5) {
-            background-image: url('https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            animation-delay: 20s;
-        }
-        @keyframes imageAnimation { 
-            0% { opacity: 0; animation-timing-function: ease-in; }
-            10% { opacity: 1; animation-timing-function: ease-out; }
-            20% { opacity: 1 }
-            30% { opacity: 0 }
-            100% { opacity: 0 }
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .filter-options {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .filter-btn {
+            background-color: #3498db;
             color: white;
-            min-height: 100vh;
-            box-sizing: border-box;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        h1, h2 {
-            color: #3498db;
-        }
-        .turf-type {
-            margin-bottom: 30px;
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #2980b9;
         }
         .turf-cards {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            justify-content: space-between;
         }
         .turf-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
             width: calc(33.33% - 20px);
-            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-        .book-btn {
+        .turf-card:hover {
+            transform: translateY(-5px);
+        }
+        .turf-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .view-btn {
+            display: inline-block;
             background-color: #3498db;
             color: white;
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
-            display: inline-block;
             margin-top: 10px;
-            cursor: pointer;
-            border: none;
+            transition: background-color 0.3s ease;
         }
-        #filterOptions {
-            margin-bottom: 20px;
+        .view-btn:hover {
+            background-color: #2980b9;
         }
-        .turf-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        
-        /* Responsive styles */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
             .turf-card {
                 width: calc(50% - 10px);
             }
         }
-        
         @media (max-width: 480px) {
             .turf-card {
                 width: 100%;
@@ -129,588 +98,398 @@
     </style>
 </head>
 <body>
-    <ul class="bg-slideshow">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
     <div class="container">
-        <h1>Sports Turf Booking</h1>
-
-        <div id="filterOptions">
-            <label for="sportFilter">Filter by sport:</label>
-            <select id="sportFilter" onchange="filterTurfs()">
-                <option value="all">All Sports</option>
-                <option value="cricket">Cricket</option>
-                <option value="football">Football</option>
-                <option value="tennis">Tennis</option>
-                <option value="basketball">Basketball</option>
-                <option value="volleyball">Volleyball</option>
-                <option value="badminton">Badminton</option>
-                <option value="hockey">Hockey</option>
-                <option value="rugby">Rugby</option>
-            </select>
+        <h1>Sports Arena</h1>
+        
+        <div class="filter-options">
+            <button class="filter-btn active" data-filter="all">All Sports</button>
+            <button class="filter-btn" data-filter="cricket">Cricket</button>
+            <button class="filter-btn" data-filter="football">Football</button>
+            <button class="filter-btn" data-filter="tennis">Tennis</button>
+            <button class="filter-btn" data-filter="basketball">Basketball</button>
+            <button class="filter-btn" data-filter="volleyball">Volleyball</button>
         </div>
 
-        <div id="turfListing"></div>
+        <div id="turfListing" class="turf-cards"></div>
     </div>
 
     <script>
         const turfs = [
-            // Cricket Grounds (10)
             {
-                name: "Green Cricket Ground",
+                name: "M.A.Chidhambaram Stadium",
                 type: "cricket",
-                location: "North",
-                description: "A lush green cricket ground with state-of-the-art facilities.",
-                amenities: ["Floodlights", "Practice nets", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
+                location: "chennai",
                 price: 50,
-                images: [
-                    "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80",
-                    "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80",
-                    "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                ]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Oval Cricket Stadium",
                 type: "cricket",
-                location: "Central",
-                description: "An iconic oval-shaped cricket stadium with a rich history.",
-                amenities: ["Spectator stands", "Commentary box", "Electronic scoreboard"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
+                location: "Sydney-Australia",
                 price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Riverside Cricket Ground",
                 type: "cricket",
                 location: "East",
-                description: "A scenic cricket ground located near the river.",
-                amenities: ["Natural grass", "Riverside view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
-                name: "City Cricket Club",
+                name: "chinnaswamy Stadium",
                 type: "cricket",
-                location: "Downtown",
-                description: "A well-established cricket club with multiple grounds.",
-                amenities: ["Floodlights", "Practice nets", "Changing rooms"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
+                location: "Banglore",
                 price: 65,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Parkside Cricket Ground",
                 type: "cricket",
                 location: "South",
-                description: "A peaceful cricket ground located in a park setting.",
-                amenities: ["Natural grass", "Picnic area", "Playground"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Beach Cricket Ground",
                 type: "cricket",
                 location: "Beachfront",
-                description: "A unique cricket ground with a beautiful beach view.",
-                amenities: ["Sandy pitch", "Beach access", "Shower facilities"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 70,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Mountain Cricket Ground",
                 type: "cricket",
                 location: "North",
-                description: "A scenic cricket ground located in the mountains.",
-                amenities: ["Natural grass", "Mountain view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Lakeside Cricket Ground",
                 type: "cricket",
                 location: "West",
-                description: "A picturesque cricket ground located by the lake.",
-                amenities: ["Natural grass", "Lake view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Forest Cricket Ground",
                 type: "cricket",
                 location: "South",
-                description: "A serene cricket ground located in the forest.",
-                amenities: ["Natural grass", "Forest view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
-
-            // Football Fields (10)
             {
                 name: "City Football Arena",
                 type: "football",
                 location: "Downtown",
-                description: "A modern football arena with artificial turf and night lighting.",
-                amenities: ["Artificial turf", "Floodlights", "Locker rooms"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Riverside Soccer Field",
                 type: "football",
                 location: "East",
-                description: "A picturesque natural grass field located by the river.",
-                amenities: ["Natural grass", "Riverside view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Parkside Football Field",
                 type: "football",
                 location: "South",
-                description: "A well-maintained football field in a peaceful park setting.",
-                amenities: ["Natural grass", "Picnic area", "Playground"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Beach Football Field",
                 type: "football",
                 location: "Beachfront",
-                description: "A unique football field with a beautiful beach view.",
-                amenities: ["Sandy pitch", "Beach access", "Shower facilities"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Mountain Football Field",
                 type: "football",
                 location: "North",
-                description: "A scenic football field located in the mountains.",
-                amenities: ["Natural grass", "Mountain view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Lakeside Football Field",
                 type: "football",
                 location: "West",
-                description: "A picturesque football field located by the lake.",
-                amenities: ["Natural grass", "Lake view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Forest Football Field",
                 type: "football",
                 location: "South",
-                description: "A serene football field located in the forest.",
-                amenities: ["Natural grass", "Forest view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Desert Football Field",
                 type: "football",
                 location: "East",
-                description: "A unique football field in the desert with sandy pitch.",
-                amenities: ["Sandy pitch", "Desert view", "Shower facilities"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 65,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Island Football Field",
                 type: "football",
                 location: "Beachfront",
-                description: "A football field on a beautiful island with a beach view.",
-                amenities: ["Natural grass", "Beach access", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 70,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Urban Football Field",
                 type: "football",
                 location: "Downtown",
-                description: "A modern football field in the heart of the city.",
-                amenities: ["Artificial turf", "Floodlights", "Locker rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
-
-            // Tennis Courts (8)
             {
                 name: "Grand Slam Tennis Center",
                 type: "tennis",
                 location: "West",
-                description: "Professional-grade tennis courts suitable for tournaments.",
-                amenities: ["Clay courts", "Umpire chairs", "Spectator seating"],
-                slots: ["07:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM", "07:00 PM"],
                 price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Parkside Tennis Club",
                 type: "tennis",
                 location: "South",
-                description: "Well-maintained tennis courts in a peaceful park setting.",
-                amenities: ["Hard courts", "Pro shop", "Coaching available"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Beach Tennis Courts",
                 type: "tennis",
                 location: "Beachfront",
-                description: "Tennis courts with a beautiful beach view.",
-                amenities: ["Hard courts", "Beach access", "Shower facilities"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Mountain Tennis Courts",
                 type: "tennis",
                 location: "North",
-                description: "Tennis courts located in the mountains with a scenic view.",
-                amenities: ["Hard courts", "Mountain view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Lakeside Tennis Courts",
                 type: "tennis",
                 location: "West",
-                description: "Tennis courts located by the lake with a picturesque view.",
-                amenities: ["Hard courts", "Lake view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Forest Tennis Courts",
                 type: "tennis",
                 location: "South",
-                description: "Tennis courts located in the forest with a serene atmosphere.",
-                amenities: ["Hard courts", "Forest view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Desert Tennis Courts",
                 type: "tennis",
                 location: "East",
-                description: "Tennis courts in the desert with a unique sandy surface.",
-                amenities: ["Hard courts", "Desert view", "Shower facilities"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Island Tennis Courts",
                 type: "tennis",
                 location: "Beachfront",
-                description: "Tennis courts on a beautiful island with a beach view.",
-                amenities: ["Hard courts", "Beach access", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
-
-            // Basketball Courts (6)
             {
                 name: "Downtown Hoops Arena",
                 type: "basketball",
                 location: "Central",
-                description: "Indoor basketball court with professional flooring and equipment.",
-                amenities: ["Scoreboards", "Locker rooms", "Spectator seating"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM", "07:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Parkside Basketball Court",
                 type: "basketball",
                 location: "South",
-                description: "Outdoor basketball court in a peaceful park setting.",
-                amenities: ["Asphalt court", "Picnic area", "Playground"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Beach Basketball Court",
                 type: "basketball",
                 location: "Beachfront",
-                description: "Basketball court with a beautiful beach view.",
-                amenities: ["Asphalt court", "Beach access", "Shower facilities"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Mountain Basketball Court",
                 type: "basketball",
                 location: "North",
-                description: "Basketball court located in the mountains with a scenic view.",
-                amenities: ["Asphalt court", "Mountain view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Lakeside Basketball Court",
                 type: "basketball",
                 location: "West",
-                description: "Basketball court located by the lake with a picturesque view.",
-                amenities: ["Asphalt court", "Lake view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Forest Basketball Court",
                 type: "basketball",
                 location: "South",
-                description: "Basketball court located in the forest with a serene atmosphere.",
-                amenities: ["Asphalt court", "Forest view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 20,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
-
-            // Volleyball Courts (4)
             {
                 name: "Beach Volleyball Paradise",
                 type: "volleyball",
                 location: "Beachfront",
-                description: "Sandy volleyball courts with a beautiful ocean view.",
-                amenities: ["Beach sand", "Adjustable nets", "Shower facilities"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Parkside Volleyball Court",
                 type: "volleyball",
                 location: "South",
-                description: "Volleyball court in a peaceful park setting.",
-                amenities: ["Sandy pitch", "Picnic area", "Playground"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Mountain Volleyball Court",
                 type: "volleyball",
                 location: "North",
-                description: "Volleyball court located in the mountains with a scenic view.",
-                amenities: ["Sandy pitch", "Mountain view", "Picnic area"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Lakeside Volleyball Court",
                 type: "volleyball",
                 location: "West",
-                description: "Volleyball court located by the lake with a picturesque view.",
-                amenities: ["Sandy pitch", "Lake view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
-
-            // Badminton Courts (4)
             {
                 name: "Shuttle Smash Center",
                 type: "badminton",
                 location: "North",
-                description: "Indoor badminton courts with proper lighting and ventilation.",
-                amenities: ["Professional courts", "Equipment rental", "Coaching available"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM", "08:00 PM"],
                 price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Parkside Badminton Court",
                 type: "badminton",
                 location: "South",
-                description: "Badminton court in a peaceful park setting.",
-                amenities: ["Hard courts", "Picnic area", "Playground"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 20,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Mountain Badminton Court",
                 type: "badminton",
                 location: "North",
-                description: "Badminton court located in the mountains with a scenic view.",
-                amenities: ["Hard courts", "Mountain view", "Picnic area"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 20,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Lakeside Badminton Court",
                 type: "badminton",
                 location: "West",
-                description: "Badminton court located by the lake with a picturesque view.",
-                amenities: ["Hard courts", "Lake view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 15,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
-
-            // Hockey Fields (4)
             {
                 name: "Astroturf Hockey Arena",
                 type: "hockey",
                 location: "East",
-                description: "State-of-the-art hockey field with artificial turf.",
-                amenities: ["Astroturf", "Floodlights", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Parkside Hockey Field",
                 type: "hockey",
                 location: "South",
-                description: "Hockey field in a peaceful park setting.",
-                amenities: ["Natural grass", "Picnic area", "Playground"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Mountain Hockey Field",
                 type: "hockey",
                 location: "North",
-                description: "Hockey field located in the mountains with a scenic view.",
-                amenities: ["Natural grass", "Mountain view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Lakeside Hockey Field",
                 type: "hockey",
                 location: "West",
-                description: "Hockey field located by the lake with a picturesque view.",
-                amenities: ["Natural grass", "Lake view", "Picnic area"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
-
-            // Rugby Fields (4)
             {
                 name: "Scrum Park Rugby Ground",
                 type: "rugby",
                 location: "South",
-                description: "Spacious rugby field with well-maintained natural grass.",
-                amenities: ["Goal posts", "Changing rooms", "First aid station"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80"
             },
             {
                 name: "Parkside Rugby Field",
                 type: "rugby",
                 location: "South",
-                description: "Rugby field in a peaceful park setting.",
-                amenities: ["Natural grass", "Picnic area", "Playground"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             },
             {
                 name: "Mountain Rugby Field",
                 type: "rugby",
                 location: "North",
-                description: "Rugby field located in the mountains with a scenic view.",
-                amenities: ["Natural grass", "Mountain view", "Picnic area"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
                 price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
             },
             {
                 name: "Lakeside Rugby Field",
                 type: "rugby",
                 location: "West",
-                description: "Rugby field located by the lake with a picturesque view.",
-                amenities: ["Natural grass", "Lake view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
                 price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
             }
         ];
 
-        function displayTurfs(filteredTurfs = turfs) {
+        function displayTurfs(filter = 'all') {
             const turfListing = document.getElementById('turfListing');
             turfListing.innerHTML = '';
 
-            const groupedTurfs = filteredTurfs.reduce((acc, turf) => {
-                if (!acc[turf.type]) acc[turf.type] = [];
-                acc[turf.type].push(turf);
-                return acc;
-            }, {});
-
-            for (const [type, turfs] of Object.entries(groupedTurfs)) {
-                const turfType = document.createElement('div');
-                turfType.className = 'turf-type';
-                turfType.innerHTML = `<h2>${type.charAt(0).toUpperCase() + type.slice(1)} Turfs</h2>`;
-
-                const turfCards = document.createElement('div');
-                turfCards.className = 'turf-cards';
-
-                turfs.forEach(turf => {
+            turfs.forEach(turf => {
+                if (filter === 'all' || turf.type === filter) {
                     const turfCard = document.createElement('div');
                     turfCard.className = 'turf-card';
                     turfCard.innerHTML = `
-                        <img src="${turf.images[0]}" alt="${turf.name}">
+                        <img src="${turf.image}" alt="${turf.name}">
                         <h3>${turf.name}</h3>
+                        <p>Type: ${turf.type}</p>
                         <p>Location: ${turf.location}</p>
                         <p>Price: $${turf.price}/hour</p>
-                        <a href="turf-details.html?turf=${encodeURIComponent(turf.name)}" class="book-btn">View Details</a>
+                        <a href="turf-details.html?name=${encodeURIComponent(turf.name)}" class="view-btn">View Details</a>
                     `;
-                    turfCards.appendChild(turfCard);
-                });
-
-                turfType.appendChild(turfCards);
-                turfListing.appendChild(turfType);
-            }
+                    turfListing.appendChild(turfCard);
+                }
+            });
         }
 
-        function filterTurfs() {
-            const sportFilter = document.getElementById('sportFilter').value;
-            const filteredTurfs = sportFilter === 'all' ? turfs : turfs.filter(turf => turf.type === sportFilter);
-            displayTurfs(filteredTurfs);
-        }
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                displayTurfs(button.getAttribute('data-filter'));
+            });
+        });
 
         // Initial display of all turfs
         displayTurfs();

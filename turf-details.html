@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turf Details and Booking</title>
+    <title>Turf Details</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,647 +11,152 @@
             margin: 0;
             padding: 20px;
             background-color: #f4f4f4;
-            color: #333;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1, h2 {
             color: #3498db;
         }
-        .book-btn, .slot-btn {
-            background-color: #3498db;
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .amenities, .equipment {
+            list-style-type: none;
+            padding: 0;
+        }
+        .amenities li, .equipment li {
+            background-color: #e0e0e0;
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 3px;
+        }
+        .book-now {
+            display: inline-block;
+            background-color: #2ecc71;
             color: white;
-            padding: 10px 15px;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-            cursor: pointer;
-            border: none;
-        }
-        .slot-btn {
-            margin: 5px;
-        }
-        .selected {
-            background-color: #2ecc71;
-        }
-        #equipmentList {
             margin-top: 20px;
         }
-        #equipmentList label {
+        .book-now:hover {
+            background-color: #27ae60;
+        }
+        .equipment-rental {
+            margin-top: 20px;
+        }
+        .equipment-rental label {
             display: block;
-            margin-bottom: 10px;
-        }
-        .slideshow-container {
-            max-width: 100%;
-            position: relative;
-            margin: auto;
-        }
-        .mySlides {
-            display: none;
-        }
-        .mySlides img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-        }
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            background-color: rgba(0,0,0,0.8);
-        }
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.9);
-        }
-        
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            .slot-btn {
-                padding: 8px 12px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            .prev, .next {
-                padding: 8px;
-            }
-            .book-btn, .slot-btn {
-                width: 100%;
-                margin: 5px 0;
-            }
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Turf Details and Booking</h1>
+        <h1>Turf Details</h1>
         <div id="turfDetails"></div>
-        <div id="slotSelection"></div>
-        <div id="equipmentRental"></div>
     </div>
 
     <script>
         const turfs = [
             {
-                name: "Green Cricket Ground",
+                name: "M.A.Chidhambaram Stadium",
                 type: "cricket",
-                location: "North",
-                description: "A lush green cricket ground with state-of-the-art facilities.",
-                amenities: ["Floodlights", "Practice nets", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
+                location: "chennai",
                 price: 50,
-                images: [
-                    "https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80",
-                    "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80",
-                    "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                description: "M.A. Chidambaram Stadium, also known as Chepauk Stadium, is a cricket stadium in Chennai, Tamil Nadu, India. It is the home ground of the Tamil Nadu cricket team and the Indian Premier League team Chennai Super Kings.",
+                amenities: ["Floodlights", "Practice nets", "Changing rooms", "Media center", "VIP boxes"],
+                image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80",
+                equipment: [
+                    { name: "Cricket Bat", price: 5 },
+                    { name: "Cricket Ball", price: 2 },
+                    { name: "Stumps", price: 3 },
+                    { name: "Pads", price: 4 },
+                    { name: "Gloves", price: 3 }
                 ]
             },
             {
-                name: "Oval Cricket Stadium",
+                name: "chinnaswamy Stadium",
                 type: "cricket",
-                location: "Central",
-                description: "An iconic oval-shaped cricket stadium with a rich history.",
-                amenities: ["Spectator stands", "Commentary box", "Electronic scoreboard"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Cricket Ground",
-                type: "cricket",
-                location: "South",
-                description: "A peaceful cricket ground located in a park setting.",
-                amenities: ["Natural grass", "Picnic area", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
+                location: "Bangalore",
                 price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "City Cricket Arena",
-                type: "cricket",
-                location: "Downtown",
-                description: "A modern cricket arena with artificial turf and night lighting.",
-                amenities: ["Artificial turf", "Floodlights", "Locker rooms"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 65,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Riverside Cricket Field",
-                type: "cricket",
-                location: "East",
-                description: "A picturesque natural grass field located by the river.",
-                amenities: ["Natural grass", "Riverside view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Cricket Ground",
-                type: "cricket",
-                location: "West",
-                description: "A scenic cricket ground with a lake view.",
-                amenities: ["Natural grass", "Lake view", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Cricket Stadium",
-                type: "cricket",
-                location: "North",
-                description: "A cricket stadium with a panoramic view of the surrounding hills.",
-                amenities: ["Artificial turf", "Floodlights", "Spectator seating"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 70,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Beachside Cricket Ground",
-                type: "cricket",
-                location: "Beachfront",
-                description: "A cricket ground with a beautiful ocean view.",
-                amenities: ["Natural grass", "Beach access", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "City Football Arena",
-                type: "football",
-                location: "Downtown",
-                description: "A modern football arena with artificial turf and night lighting.",
-                amenities: ["Artificial turf", "Floodlights", "Locker rooms"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Riverside Soccer Field",
-                type: "football",
-                location: "East",
-                description: "A picturesque natural grass field located by the river.",
-                amenities: ["Natural grass", "Riverside view", "Picnic area"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Football Ground",
-                type: "football",
-                location: "West",
-                description: "A scenic football ground with a lake view.",
-                amenities: ["Natural grass", "Lake view", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Football Stadium",
-                type: "football",
-                location: "North",
-                description: "A football stadium with a panoramic view of the surrounding hills.",
-                amenities: ["Artificial turf", "Floodlights", "Spectator seating"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Beachside Football Ground",
-                type: "football",
-                location: "Beachfront",
-                description: "A football ground with a beautiful ocean view.",
-                amenities: ["Natural grass", "Beach access", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Grand Slam Tennis Center",
-                type: "tennis",
-                location: "West",
-                description: "Professional-grade tennis courts suitable for tournaments.",
-                amenities: ["Clay courts", "Umpire chairs", "Spectator seating"],
-                slots: ["07:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM", "07:00 PM"],
-                price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Tennis Club",
-                type: "tennis",
-                location: "South",
-                description: "Well-maintained tennis courts in a peaceful park setting.",
-                amenities: ["Hard courts", "Pro shop", "Coaching available"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Tennis Courts",
-                type: "tennis",
-                location: "East",
-                description: "Tennis courts with a beautiful lake view.",
-                amenities: ["Hard courts", "Lake view", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Tennis Center",
-                type: "tennis",
-                location: "North",
-                description: "Tennis courts with a panoramic view of the surrounding hills.",
-                amenities: ["Clay courts", "Spectator seating", "Coaching available"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Beachside Tennis Courts",
-                type: "tennis",
-                location: "Beachfront",
-                description: "Tennis courts with a beautiful ocean view.",
-                amenities: ["Hard courts", "Beach access", "Changing rooms"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Downtown Hoops Arena",
-                type: "basketball",
-                location: "Central",
-                description: "Indoor basketball court with professional flooring and equipment.",
-                amenities: ["Scoreboards", "Locker rooms", "Spectator seating"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM", "07:00 PM"],
-                price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Basketball Court",
-                type: "basketball",
-                location: "South",
-                description: "Outdoor basketball court in a peaceful park setting.",
-                amenities: ["Outdoor court", "Picnic area", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Basketball Court",
-                type: "basketball",
-                location: "East",
-                description: "Basketball court with a beautiful lake view.",
-                amenities: ["Outdoor court", "Lake view", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Basketball Court",
-                type: "basketball",
-                location: "North",
-                description: "Basketball court with a panoramic view of the surrounding hills.",
-                amenities: ["Outdoor court", "Spectator seating", "Coaching available"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 40,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Beachside Basketball Court",
-                type: "basketball",
-                location: "Beachfront",
-                description: "Basketball court with a beautiful ocean view.",
-                amenities: ["Outdoor court", "Beach access", "Changing rooms"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 35,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Beach Volleyball Paradise",
-                type: "volleyball",
-                location: "Beachfront",
-                description: "Sandy volleyball courts with a beautiful ocean view.",
-                amenities: ["Beach sand", "Adjustable nets", "Shower facilities"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Volleyball Court",
-                type: "volleyball",
-                location: "South",
-                description: "Volleyball court in a peaceful park setting.",
-                amenities: ["Outdoor court", "Picnic area", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Volleyball Court",
-                type: "volleyball",
-                location: "East",
-                description: "Volleyball court with a beautiful lake view.",
-                amenities: ["Outdoor court", "Lake view", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 20,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Volleyball Court",
-                type: "volleyball",
-                location: "North",
-                description: "Volleyball court with a panoramic view of the surrounding hills.",
-                amenities: ["Outdoor court", "Spectator seating", "Coaching available"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 30,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Shuttle Smash Center",
-                type: "badminton",
-                location: "North",
-                description: "Indoor badminton courts with proper lighting and ventilation.",
-                amenities: ["Professional courts", "Equipment rental", "Coaching available"],
-                slots: ["08:00 AM", "10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM", "08:00 PM"],
-                price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Badminton Court",
-                type: "badminton",
-                location: "South",
-                description: "Badminton court in a peaceful park setting.",
-                amenities: ["Outdoor court", "Picnic area", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 20,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Badminton Court",
-                type: "badminton",
-                location: "East",
-                description: "Badminton court with a beautiful lake view.",
-                amenities: ["Outdoor court", "Lake view", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 15,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Badminton Court",
-                type: "badminton",
-                location: "North",
-                description: "Badminton court with a panoramic view of the surrounding hills.",
-                amenities: ["Outdoor court", "Spectator seating", "Coaching available"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 25,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Astroturf Hockey Arena",
-                type: "hockey",
-                location: "East",
-                description: "State-of-the-art hockey field with artificial turf.",
-                amenities: ["Astroturf", "Floodlights", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 55,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Hockey Field",
-                type: "hockey",
-                location: "South",
-                description: "Hockey field in a peaceful park setting.",
-                amenities: ["Natural grass", "Picnic area", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Hockey Field",
-                type: "hockey",
-                location: "East",
-                description: "Hockey field with a beautiful lake view.",
-                amenities: ["Natural grass", "Lake view", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Hockey Field",
-                type: "hockey",
-                location: "North",
-                description: "Hockey field with a panoramic view of the surrounding hills.",
-                amenities: ["Artificial turf", "Floodlights", "Spectator seating"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Scrum Park Rugby Ground",
-                type: "rugby",
-                location: "South",
-                description: "Spacious rugby field with well-maintained natural grass.",
-                amenities: ["Goal posts", "Changing rooms", "First aid station"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Parkside Rugby Field",
-                type: "rugby",
-                location: "South",
-                description: "Rugby field in a peaceful park setting.",
-                amenities: ["Natural grass", "Picnic area", "Changing rooms"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 45,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Lakeside Rugby Field",
-                type: "rugby",
-                location: "East",
-                description: "Rugby field with a beautiful lake view.",
-                amenities: ["Natural grass", "Lake view", "Changing rooms"],
-                slots: ["10:00 AM", "12:00 PM", "02:00 PM", "04:00 PM", "06:00 PM"],
-                price: 50,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
-            },
-            {
-                name: "Hilltop Rugby Field",
-                type: "rugby",
-                location: "North",
-                description: "Rugby field with a panoramic view of the surrounding hills.",
-                amenities: ["Artificial turf", "Floodlights", "Spectator seating"],
-                slots: ["09:00 AM", "11:00 AM", "01:00 PM", "03:00 PM", "05:00 PM"],
-                price: 60,
-                images: ["image_url_1", "image_url_2", "image_url_3"]
+                description: "M. Chinnaswamy Stadium is a cricket stadium located in Bangalore, Karnataka. Established in 1969, it is the home ground of the Karnataka state cricket team and the Indian Premier League franchise Royal Challengers Bangalore.",
+                amenities: ["Floodlights", "Practice nets", "Changing rooms", "Media center", "Solar panels"],
+                image: "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                equipment: [
+                    { name: "Cricket Bat", price: 6 },
+                    { name: "Cricket Ball", price: 2 },
+                    { name: "Stumps", price: 4 },
+                    { name: "Pads", price: 5 },
+                    { name: "Gloves", price: 3 }
+                ]
             }
         ];
 
-        const equipmentOptions = {
-            cricket: [
-                { name: 'Cricket Bat', price: 5 },
-                { name: 'Cricket Ball', price: 2 },
-                { name: 'Cricket Stumps', price: 3 }
-            ],
-            football: [
-                { name: 'Football', price: 3 },
-                { name: 'Goalkeeper Gloves', price: 4 }
-            ],
-            tennis: [
-                { name: 'Tennis Racket', price: 5 },
-                { name: 'Tennis Balls (3-pack)', price: 2 }
-            ],
-            basketball: [
-                { name: 'Basketball', price: 3 },
-                { name: 'Basketball Shoes', price: 6 }
-            ],
-            volleyball: [
-                { name: 'Volleyball', price: 3 },
-                { name: 'Knee Pads', price: 4 }
-            ],
-            badminton: [
-                { name: 'Badminton Racket', price: 4 },
-                { name: 'Shuttlecocks (Pack of 6)', price: 3 }
-            ],
-            hockey: [
-                { name: 'Hockey Stick', price: 5 },
-                { name: 'Hockey Ball', price: 2 },
-                { name: 'Shin Guards', price: 3 }
-            ],
-            rugby: [
-                { name: 'Rugby Ball', price: 4 },
-                { name: 'Rugby Boots', price: 7 }
-            ]
-        };
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const turfName = urlParams.get('turf');
-        const turf = turfs.find(t => t.name === turfName);
-
         function displayTurfDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const turfName = urlParams.get('name');
+
+            const turf = turfs.find(t => t.name.toLowerCase() === turfName.toLowerCase());
             const turfDetails = document.getElementById('turfDetails');
-            let slideshowHtml = `
-                <div class="slideshow-container">
-                    ${turf.images.map((img, index) => `
-                        <div class="mySlides">
-                            <img src="${img}" alt="Turf Image ${index + 1}">
-                        </div>
-                    `).join('')}
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                </div>
-            `;
-            
+
+            if (!turf) {
+                turfDetails.innerHTML = '<p>Turf not found.</p>';
+                return;
+            }
+
+            const equipmentHtml = turf.equipment.map(item => `
+                <label>
+                    <input type="checkbox" name="equipment" value="${item.name}" data-price="${item.price}">
+                    ${item.name} - $${item.price}/hour
+                </label>
+            `).join('');
+
             turfDetails.innerHTML = `
-                ${slideshowHtml}
+                <img src="${turf.image}" alt="${turf.name}">
                 <h2>${turf.name}</h2>
                 <p><strong>Type:</strong> ${turf.type.charAt(0).toUpperCase() + turf.type.slice(1)} Turf</p>
                 <p><strong>Location:</strong> ${turf.location}</p>
                 <p>${turf.description}</p>
                 <p><strong>Amenities:</strong></p>
-                <ul>
+                <ul class="amenities">
                     ${turf.amenities.map(amenity => `<li>${amenity}</li>`).join('')}
                 </ul>
                 <p><strong>Price:</strong> $${turf.price} per hour</p>
-            `;
-            showSlots();
-            showSlides(slideIndex);
-        }
-
-        function showSlots() {
-            const slotsHtml = `
-                <h2>Available Slots</h2>
-                ${turf.slots.map(slot => `<button class="slot-btn" onclick="selectSlot(this)">${slot}</button>`).join('')}
-                <br><br>
-                <button class="book-btn" onclick="showEquipmentRental()">Continue to Equipment Rental</button>
-            `;
-            document.getElementById('slotSelection').innerHTML = slotsHtml;
-        }
-
-        function selectSlot(button) {
-            document.querySelectorAll('.slot-btn').forEach(btn => btn.classList.remove('selected'));
-            button.classList.add('selected');
-        }
-
-        function showEquipmentRental() {
-            const selectedSlot = document.querySelector('.slot-btn.selected');
-            if (!selectedSlot) {
-                alert('Please select a time slot.');
-                return;
-            }
-
-            const equipmentHtml = `
-                <h2>Rent Equipment</h2>
-                <div id="equipmentList">
-                    ${equipmentOptions[turf.type].map(item => `
-                        <label>
-                            <input type="checkbox" name="equipment" value="${item.name}" data-price="${item.price}">
-                            ${item.name} - $${item.price}
-                        </label>
-                    `).join('')}
+                <div class="equipment-rental">
+                    <h3>Rent Equipment:</h3>
+                    ${equipmentHtml}
                 </div>
-                <button class="book-btn" onclick="confirmBooking()">Confirm Booking</button>
+                <button onclick="bookNow()" class="book-now">Book Now</button>
             `;
-            document.getElementById('equipmentRental').innerHTML = equipmentHtml;
         }
 
-        function confirmBooking() {
-            const selectedSlot = document.querySelector('.slot-btn.selected').textContent;
-            const selectedEquipment = Array.from(document.querySelectorAll('input[name="equipment"]:checked'))
-                .map(input => ({
-                    name: input.value,
-                    price: parseFloat(input.dataset.price)
-                }));
+        function bookNow() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const turfName = urlParams.get('name');
+            const turf = turfs.find(t => t.name.toLowerCase() === turfName.toLowerCase());
             
-            const totalEquipmentPrice = selectedEquipment.reduce((sum, item) => sum + item.price, 0);
-            const totalPrice = turf.price + totalEquipmentPrice;
+            let totalPrice = turf.price;
+            let selectedEquipment = [];
 
-            const equipmentNames = selectedEquipment.map(item => item.name).join(', ');
+            document.querySelectorAll('input[name="equipment"]:checked').forEach(item => {
+                totalPrice += parseFloat(item.dataset.price);
+                selectedEquipment.push(item.value);
+            });
 
-            window.location.href = `payment.html?turf=${encodeURIComponent(turf.name)}&slot=${encodeURIComponent(selectedSlot)}&price=${totalPrice}&equipment=${encodeURIComponent(equipmentNames)}`;
-        }
-
-        let slideIndex = 1;
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("mySlides");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex-1].style.display = "block";
+            const equipmentParam = selectedEquipment.length > 0 ? `&equipment=${encodeURIComponent(selectedEquipment.join(','))}` : '';
+            
+            window.location.href = `payment.html?turf=${encodeURIComponent(turf.name)}&price=${totalPrice}${equipmentParam}`;
         }
 
         // Initialize the page
